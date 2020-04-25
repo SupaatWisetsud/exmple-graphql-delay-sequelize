@@ -5,9 +5,6 @@ module.exports = {
     // return queryInterface.sequelize.query(`
       
     // `);
-    return queryInterface.bulkInsert('spo_project', [{
-      project_name: "demo 1",
-    }]);
   },
 
   down: (queryInterface, Sequelize) => {

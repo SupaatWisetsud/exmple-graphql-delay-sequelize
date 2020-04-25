@@ -3,7 +3,8 @@ import {attributeFields} from 'graphql-sequelize';
 import SparePartsType from './SparePartsType'
 import {
     GraphQLObjectType,
-    GraphQLInt
+    GraphQLInt,
+    GraphQLString
 } from 'graphql';
 
 import { resolver } from 'graphql-sequelize'
@@ -11,7 +12,7 @@ import { resolver } from 'graphql-sequelize'
 const SparePartToProjectType = new GraphQLObjectType({
     name: "SparePartToProjectType",
     fields: Object.assign(attributeFields(models.SparePartToProject, {
-        globalId: true
+        globalId: true,
     }), {
         spare_part_to_project_no: {
             type: GraphQLInt,

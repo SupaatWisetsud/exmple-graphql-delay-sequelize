@@ -29,7 +29,7 @@ const createSparePartToProject = mutationWithClientMutationId({
         pc_cost: {type: GraphQLInt},
         pc_lt: {type: GraphQLInt},
         pc_cbm: {type: GraphQLInt},
-        lt: {type: GraphQLString},          
+        lt: {type: GraphQLInt},          
         unit_cost: {type: GraphQLInt},
         ss: {type: GraphQLInt},
         max: {type: GraphQLInt},

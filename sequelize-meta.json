@@ -1,6 +1,4 @@
 [
-  "20200424081939-create-user.js",
-  "20200424081939-create-project.js",
-  "20200424093345-create-spare-parts.js",
-  "20200424093345-create-table.js"
+  "20200424093345-create-table.js",
+  "20200425073955-create-spare-part-to-project.js"
 ]

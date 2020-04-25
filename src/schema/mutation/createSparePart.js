@@ -12,10 +12,10 @@ const createSparePart = mutationWithClientMutationId({
         }
     },
     outputFields: {
-        spare_part: {
-            type: types.SparePartsType,
-            resolve: payload => payload
-        }
+        // spare_part: {
+        //     type: types.SparePartsType,
+        //     resolve: payload => payload
+        // }
     },
     mutateAndGetPayload: async (params, content) => {
         const result = await models.SpareParts.create({

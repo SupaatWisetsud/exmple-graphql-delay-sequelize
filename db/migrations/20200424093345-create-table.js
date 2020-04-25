@@ -22,53 +22,31 @@ module.exports = {
           }
         }, {transaction: t}),
         
-        queryInterface.createTable('spare_parts', {
+        queryInterface.createTable('spo_spare_parts', {
           spare_parts_no: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER
           },
-          spare_parts_name: {
-            type: Sequelize.STRING
-          }
+          spare_parts_name: {type: Sequelize.STRING},
+          onhand: {type: Sequelize.INTEGER, defaultValue: 0},
+          on_pr: {type: Sequelize.INTEGER, defaultValue: 0},
+          risk_of_stockout: {type: Sequelize.FLOAT, defaultValue: 0},
+          demand: {type: Sequelize.INTEGER, defaultValue: 0},
+          criticality: Sequelize.STRING,
+          eq_a: {type: Sequelize.INTEGER, defaultValue: 0},          
+          eq_b: {type: Sequelize.INTEGER, defaultValue: 0},          
+          eq_c: {type: Sequelize.INTEGER, defaultValue: 0},          
+          pc_cost: {type: Sequelize.INTEGER, defaultValue: 0},          
+          pc_lt: {type: Sequelize.INTEGER, defaultValue: 0},          
+          pc_cbm: {type: Sequelize.INTEGER, defaultValue: 0},          
+          lt: {type: Sequelize.INTEGER, defaultValue: 0},          
+          unit_cost: {type: Sequelize.INTEGER, defaultValue: 0},          
+          ss: {type: Sequelize.INTEGER, defaultValue: 0},          
+          max: {type: Sequelize.INTEGER, defaultValue: 0},          
+          min: {type: Sequelize.INTEGER, defaultValue: 0}, 
         }, {transaction: t}),
-
-        queryInterface.createTable('spare_part_to_project', {
-          spare_part_to_project_no: {
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER
-          },
-          project_id: {
-            allowNull: false,
-            type: Sequelize.INTEGER,
-            references: { model: 'spo_project', key: 'project_no' }
-          },
-          spare_parts_id: {
-            allowNull: false,
-            type: Sequelize.INTEGER,
-            references: { model: 'spare_parts', key: 'spare_parts_no'}
-          },
-          onhand: Sequelize.INTEGER,
-          on_pr: Sequelize.INTEGER,
-          risk_of_stockout: Sequelize.FLOAT,
-          demand: Sequelize.INTEGER,
-          Criticality: Sequelize.STRING,
-          eq_a: Sequelize.INTEGER,          
-          eq_b: Sequelize.INTEGER,          
-          eq_c: Sequelize.INTEGER,          
-          pc_cost: Sequelize.INTEGER,          
-          pc_lt: Sequelize.INTEGER,          
-          pc_cbm: Sequelize.INTEGER,          
-          lt: Sequelize.STRING,          
-          unit_cost: Sequelize.INTEGER,          
-          ss: Sequelize.INTEGER,          
-          max: Sequelize.INTEGER,          
-          min: Sequelize.INTEGER,          
-        })
-
       ]);
 
     })
@@ -77,8 +55,7 @@ module.exports = {
     return queryInterface.sequelize.transaction( t => {
       return Promise.all([
         queryInterface.dropTable('spo_project', {transaction: t}),
-        queryInterface.dropTable('spare_parts', {transaction: t}),
-        queryInterface.dropTable('spare_part_to_project', {transaction: t})
+        queryInterface.dropTable('spo_spare_parts', {transaction: t}),
       ])
     })
   }

@@ -5,15 +5,15 @@ import { resolver } from 'graphql-sequelize';
 import {
     GraphQLList,
     GraphQLBoolean,
+    GraphQLNonNull,
+    GraphQLInt,
 } from 'graphql';
 
 const {
     Project,
-    SparePartToProject
 } = models;
 const {
     ProjectType,
-    SparePartToProjectType
 } = types;
 
 
@@ -25,8 +25,11 @@ export default {
         },
         resolve: resolver(Project)
     },
-    sparepart_to_project: {
-        type: new GraphQLList(SparePartToProjectType),
-        resolve: resolver(SparePartToProject)
+    projectdetail: {
+        type: ProjectType,
+        args: {
+            id: {type: new GraphQLNonNull(GraphQLInt)}
+        },
+        resolve: resolver(Project)
     }
 };

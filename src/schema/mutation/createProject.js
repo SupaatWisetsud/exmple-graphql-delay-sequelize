@@ -5,12 +5,14 @@ import { mutationWithClientMutationId} from 'graphql-relay';
 import {
     GraphQLString,
     GraphQLNonNull,
+    GraphQLInt,
 } from 'graphql';
 
 var createProject = mutationWithClientMutationId({
     name: 'createProject',
     inputFields: {
-        project_name:{type:new GraphQLNonNull(GraphQLString)},
+        project_no: {type: GraphQLInt},
+        project_name:{type:GraphQLString},
     },
     outputFields: {
         project:{
@@ -19,11 +21,18 @@ var createProject = mutationWithClientMutationId({
         }
     },
     mutateAndGetPayload: async (params,context) =>{
-        const result = await models.Project.create({ 
-            ...params
-        });
+        const { project_no } = params;
 
-        return result 
+        if(project_no !== null && project_no !== undefined){
+            return await models.Project.update({ is_draft: false }, {
+                where: {
+                    id: params.project_no
+            }});
+        }else{
+            return await models.Project.create({ 
+                ...params
+            }); 
+        }
     }
 });
 

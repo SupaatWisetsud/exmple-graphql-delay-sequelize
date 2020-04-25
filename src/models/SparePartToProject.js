@@ -2,7 +2,7 @@ import Sequelize, { Model } from 'sequelize';
 
 class SparePartToProject extends Model {
 
-    static tableName = "spare_part_to_project";
+    static tableName = "spo_spare_part_to_project";
     static RefSparePart;
 
     static associate(models){
@@ -22,22 +22,27 @@ const schema = {
     },
     project_id: Sequelize.INTEGER,
     spare_parts_id: Sequelize.INTEGER,
-    onhand: Sequelize.INTEGER,
-    on_pr: Sequelize.INTEGER,
-    risk_of_stockout: Sequelize.FLOAT,
-    demand: Sequelize.INTEGER,
-    Criticality: Sequelize.STRING,
-    eq_a: Sequelize.INTEGER,          
-    eq_b: Sequelize.INTEGER,          
-    eq_c: Sequelize.INTEGER,          
-    pc_cost: Sequelize.INTEGER,          
-    pc_lt: Sequelize.INTEGER,          
-    pc_cbm: Sequelize.INTEGER,          
-    lt: Sequelize.STRING,          
-    unit_cost: Sequelize.INTEGER,          
-    ss: Sequelize.INTEGER,          
-    max: Sequelize.INTEGER,          
-    min: Sequelize.INTEGER,
+    unit_cost: {type: Sequelize.INTEGER},
+    oty_per_issue: {type: Sequelize.INTEGER},
+    leadtime: {type: Sequelize.INTEGER},
+    annual_usage: {type: Sequelize.INTEGER},
+    cost_of_stock_out: {type: Sequelize.INTEGER},
+    purchase_cost: {type: Sequelize.INTEGER},
+    purchase_period: {type: Sequelize.INTEGER},
+    shelf_life: {type: Sequelize.INTEGER},
+    evaluation_period: {type: Sequelize.INTEGER},
+    confidence_level: {type: Sequelize.INTEGER},
+    service_factor: {type: Sequelize.INTEGER},
+    stock_overhead: {type: Sequelize.INTEGER},
+    max: {type: Sequelize.INTEGER},
+    min: {type: Sequelize.INTEGER},
+    safety_stock: {type: Sequelize.INTEGER},
+    eoq: {type: Sequelize.STRING},
+    stock_cost: {type: Sequelize.INTEGER},
+    risk_of_not_having_stock: {type: Sequelize.FLOAT},
+    risk_of_not_having_stock_during_lead_time: {type: Sequelize.FLOAT},
+    incremental_increase: {type: Sequelize.FLOAT},
+    cost_vs_risk_ratio: {type: Sequelize.FLOAT},
 }
 
 export default sequelize => {
