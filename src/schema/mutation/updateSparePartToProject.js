@@ -8,13 +8,11 @@ import {
     GraphQLFloat
 } from 'graphql';
 
-const createSparePartToProject = mutationWithClientMutationId({
-    name: 'createSparePartToProject',
+
+const updateSparePartToProject = mutationWithClientMutationId({
+    name: 'updateSparePartToProject',
     inputFields: {
-        project_id: {
-            type: new GraphQLNonNull(GraphQLInt)
-        },
-        spare_parts_id: {
+        spare_part_to_project_no: {
             type: new GraphQLNonNull(GraphQLInt)
         },
         unit_cost:{type:  GraphQLInt},
@@ -46,11 +44,15 @@ const createSparePartToProject = mutationWithClientMutationId({
         // }
     },
     mutateAndGetPayload: async (params, content) => {
-        const result = await models.SparePartToProject.create({
+        const result = await models.SparePartToProject.update({
             ...params
+        }, {
+            where: {
+                id: params.spare_part_to_project_no
+            }
         });
         return result;
     }
 });
 
-export default createSparePartToProject;
+export default updateSparePartToProject;

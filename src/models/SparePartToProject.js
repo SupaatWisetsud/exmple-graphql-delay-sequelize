@@ -7,7 +7,7 @@ class SparePartToProject extends Model {
 
     static associate(models){
         SparePartToProject.RefSparePart = SparePartToProject.belongsTo(models.SpareParts, {
-            as: "ref_spare_part",
+            as: "spare_part",
             foreignKey: "spare_parts_id"
         })
     }

@@ -18,7 +18,7 @@ const SparePartToProjectType = new GraphQLObjectType({
             type: GraphQLInt,
             resolve: obj => obj.id
         },
-        ref_spare_part: {
+        spare_part: {
             type: SparePartsType,
             resolve: resolver(models.SparePartToProject.RefSparePart)
         }

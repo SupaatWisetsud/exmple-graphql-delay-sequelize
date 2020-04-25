@@ -26,8 +26,9 @@ var createProject = mutationWithClientMutationId({
         if(project_no !== null && project_no !== undefined){
             return await models.Project.update({ is_draft: false }, {
                 where: {
-                    id: params.project_no
-            }});
+                    id: project_no
+                }
+            });
         }else{
             return await models.Project.create({ 
                 ...params
